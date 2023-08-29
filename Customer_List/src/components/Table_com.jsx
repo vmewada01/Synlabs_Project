@@ -38,7 +38,8 @@ const Table_com = () => {
     account: (
       <Input
         type="text"
-        style={{ fontSize: "15px" }}
+        // style={{ fontSize: "15px" }}
+        size="medium"
         placeholder="search..."
         value={filter}
         onChange={handleFilterChange}
@@ -47,7 +48,8 @@ const Table_com = () => {
     name: (
       <Input
         type="text"
-        style={{ fontSize: "15px" }}
+        // style={{ fontSize: "15px" }}
+        size="medium"
         placeholder="search..."
         value={filter_company}
         onChange={handleFilter_company}
@@ -88,12 +90,12 @@ const Table_com = () => {
       .then((res) => {
         console.log(res.data);
 
-         setCurrentPage(res.data.currentPage)
+        setCurrentPage(res.data.currentPage);
 
-         setLength(res.data.totalRecords)
+        setLength(res.data.totalRecords);
 
-         setPageSize(res.data.pageSize)
-          // console.log(res.data.records);
+        setPageSize(res.data.pageSize);
+        // console.log(res.data.records);
         const fetchData = res.data.records.map((row, index) => ({
           sr: index + 1,
           account: (
@@ -108,7 +110,7 @@ const Table_com = () => {
           email: row.emailAddress || "NA",
           phone: row.phone || "NA",
           state: row.state || "NA",
-          address: row.country || "NA",
+          country: row.country || "NA",
           post_code: row.postCode || "NA",
         }));
 
@@ -129,11 +131,13 @@ const Table_com = () => {
       dataIndex: "account",
       key: "account",
       align: "center",
+      width: 200,
     },
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      width: 200,
     },
     {
       title: "State",
@@ -158,9 +162,9 @@ const Table_com = () => {
       hidden: columnsHide,
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Country",
+      dataIndex: "country",
+      key: "country",
       hidden: columnsHide,
     },
   ].filter((col) => !col.hidden);
@@ -168,10 +172,7 @@ const Table_com = () => {
   const [changeIcon, setChangeIcon] = useState(false);
 
   const handleChange = (e) => {
-    //console.log(e)
-    // message(`The value are ${e}`)
-     alert(`The value are ${e}`);
-    // <Alert message={`The value are ${e}`} type="info" />;
+    alert(`The value are ${e}`);
   };
 
   const handleCreateNewAccount = () => {
@@ -232,7 +233,7 @@ const Table_com = () => {
       </div>
       <div>
         <Table
-          className="custom-table"
+          size="small"
           bordered={"1px solid black"}
           dataSource={data}
           columns={columns}
@@ -241,11 +242,7 @@ const Table_com = () => {
 
       <div style={{ display: "flex" }}>
         <Button
-          style={{
-            alignItems: "center",
-            border: "1px solid black",
-            borderRadius: "5px",
-          }}
+               size="medium"
         >
           Show
         </Button>
